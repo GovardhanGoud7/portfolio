@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L. Govardhan Goud — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1512;
+    --panel:#151D19;
+    --paper:#F2EFE6;
+    --paper-dim:#CFCABB;
+    --amber:#E3A44C;
+    --moss:#7FA07A;
+    --line: rgba(242,239,230,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  ::selection{background:var(--amber);color:var(--ink);}
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,21,18,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 28px;max-width:920px;margin:0 auto;
+  }
+  .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;font-size:15px;letter-spacing:0.3px;
+    color:var(--paper);
+  }
+  .brand span{color:var(--amber);}
+  nav.links{display:flex;gap:26px;font-size:14px;}
+  nav.links a{color:var(--paper-dim);transition:color .15s ease;}
+  nav.links a:hover{color:var(--amber);}
+  .navtoggle{display:none;background:none;border:none;color:var(--paper);font-size:20px;cursor:pointer;}
+
+  @media(max-width:640px){
+    nav.links{
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--panel);
+      flex-direction:column;gap:0;
+      display:none;
+      border-bottom:1px solid var(--line);
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:14px 28px;border-top:1px solid var(--line);}
+    .navtoggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+  }
+  .prompt-line{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--moss);
+    font-size:13px;
+    margin-bottom:22px;
+  }
+  .prompt-line .cursor{
+    display:inline-block;width:8px;height:14px;background:var(--amber);
+    margin-left:4px;animation:blink 1.1s step-end infinite;vertical-align:-2px;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  h1.name{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:800;
+    font-size:clamp(34px,6vw,58px);
+    line-height:1.08;
+    letter-spacing:-0.5px;
+    max-width:14ch;
+  }
+  .role{
+    margin-top:18px;
+    font-size:19px;
+    color:var(--paper-dim);
+    max-width:52ch;
+  }
+  .hero-meta{
+    margin-top:34px;
+    display:flex;flex-wrap:wrap;gap:14px 28px;
+    font-size:14px;
+    color:var(--paper-dim);
+  }
+  .hero-meta a:hover{color:var(--amber);}
+  .hero-meta .sep{color:var(--line);}
+
+  /* ---------- Section shell ---------- */
+  section{
+    padding:64px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--moss);
+    margin-bottom:10px;
+  }
+  .kicker::before{content:"// ";color:var(--paper-dim);}
+  h2{
+    font-family:'JetBrains Mono',monospace;
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:34px;
+  }
+
+  /* ---------- Education ---------- */
+  .edu-row{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;
+    padding:18px 0;
+  }
+  .edu-degree{font-size:17px;font-weight:600;}
+  .edu-school{color:var(--paper-dim);font-size:15px;margin-top:4px;}
+  .edu-right{
+    text-align:right;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--amber);
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-grid{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:18px 24px;
+  }
+  .skill-cat{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--paper-dim);
+    padding-top:2px;
+  }
+  .skill-vals{
+    display:flex;flex-wrap:wrap;gap:9px;
+  }
+  .chip{
+    border:1px solid var(--line);
+    padding:6px 13px;
+    border-radius:3px;
+    font-size:14px;
+    color:var(--paper);
+  }
+  @media(max-width:560px){
+    .skill-grid{grid-template-columns:1fr;}
+    .skill-cat{padding-top:0;}
+  }
+
+  /* ---------- Project ---------- */
+  .project-card{
+    border:1px solid var(--line);
+    border-left:3px solid var(--amber);
+    padding:28px 26px;
+    background:var(--panel);
+  }
+  .project-title{
+    font-size:19px;font-weight:700;margin-bottom:6px;
+  }
+  .project-stack{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;color:var(--moss);margin-bottom:16px;
+  }
+  .project-card ul{
+    list-style:none;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .project-card li{
+    padding-left:20px;position:relative;
+    color:var(--paper-dim);font-size:15px;
+  }
+  .project-card li::before{
+    content:"›";position:absolute;left:0;color:var(--amber);font-weight:700;
+  }
+
+  /* ---------- Certs & strengths ---------- */
+  .two-col{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  }
+  @media(max-width:640px){.two-col{grid-template-columns:1fr;gap:40px;}}
+  .list-plain{list-style:none;display:flex;flex-direction:column;gap:12px;}
+  .list-plain li{
+    padding-bottom:12px;border-bottom:1px dashed var(--line);
+    font-size:15px;color:var(--paper-dim);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  .list-plain li:last-child{border-bottom:none;}
+  .list-plain li span.tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--moss);white-space:nowrap;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    padding:72px 0 90px;
+    border-bottom:none;
+  }
+  .contact h2{margin-bottom:16px;}
+  .contact p{color:var(--paper-dim);max-width:48ch;margin-bottom:36px;font-size:16px;}
+  .contact-grid{
+    display:flex;flex-wrap:wrap;gap:14px;
+  }
+  .contact-btn{
+    border:1px solid var(--line);
+    padding:14px 22px;
+    font-size:14.5px;
+    display:flex;align-items:center;gap:10px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .contact-btn:hover{border-color:var(--amber);color:var(--amber);}
+
+  footer{
+    padding:28px 0 50px;
+    text-align:center;
+    font-size:13px;
+    color:var(--paper-dim);
+    font-family:'JetBrains Mono',monospace;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="navrow">
+    <div class="brand">govardhan<span>.</span>goud</div>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#project">Project</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="prompt-line">~/govardhan &gt; whoami<span class="cursor"></span></div>
+    <h1 class="name">L. Govardhan Goud</h1>
+    <p class="role">B.Tech Computer Science graduate (2027) building toward a career in software development — comfortable across Java, Python, and the web stack, and eager to learn on the job.</p>
+    <div class="hero-meta">
+      <a href="mailto:govardhangovgov@gmail.com">govardhangovgov@gmail.com</a>
+      <span class="sep">/</span>
+      <a href="tel:+919391879413">+91 93918 79413</a>
+      <span class="sep">/</span>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a>
+      <span class="sep">/</span>
+      <span>Andhra Pradesh, India</span>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="kicker">education</div>
+    <h2>Where it started</h2>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">B.Tech, Computer Science and Engineering</div>
+        <div class="edu-school">St. John's College of Engineering and Technology</div>
+      </div>
+      <div class="edu-right">84% · 2027</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="kicker">skills</div>
+    <h2>What I work with</h2>
+    <div class="skill-grid">
+      <div class="skill-cat">Programming</div>
+      <div class="skill-vals">
+        <span class="chip">Java</span><span class="chip">C</span><span class="chip">Python</span>
+      </div>
+
+      <div class="skill-cat">Web</div>
+      <div class="skill-vals">
+        <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+      </div>
+
+      <div class="skill-cat">Core concepts</div>
+      <div class="skill-vals">
+        <span class="chip">OOP</span><span class="chip">DBMS</span><span class="chip">Computer Networks</span><span class="chip">Operating Systems</span>
+      </div>
+
+      <div class="skill-cat">Tools</div>
+      <div class="skill-vals">
+        <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="project">
+    <div class="kicker">project</div>
+    <h2>Something I built</h2>
+    <div class="project-card">
+      <div class="project-title">Student Profile Portfolio Website</div>
+      <div class="project-stack">HTML · CSS · JavaScript</div>
+      <ul>
+        <li>Built a responsive personal portfolio site to present academic background, technical skills, projects, and certifications in one place.</li>
+        <li>Implemented an interactive, user-friendly interface using vanilla HTML, CSS, and JavaScript.</li>
+        <li>Designed the layout to hold up cleanly across screen sizes, from desktop down to mobile.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="kicker">credentials</div>
+    <h2>Certifications &amp; strengths</h2>
+    <div class="two-col">
+      <div>
+        <ul class="list-plain">
+          <li>NPTEL Certification <span class="tag">CERT</span></li>
+          <li>APSSDC Training / Certification <span class="tag">CERT</span></li>
+          <li>Python Certification <span class="tag">CERT</span></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list-plain">
+          <li>Quick learner, adaptable <span class="tag">STRENGTH</span></li>
+          <li>Strong problem-solving ability <span class="tag">STRENGTH</span></li>
+          <li>Teamwork and communication <span class="tag">STRENGTH</span></li>
+          <li>Willing to learn new technologies <span class="tag">STRENGTH</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="kicker">contact</div>
+    <h2>Let's talk</h2>
+    <p>Looking for entry-level software development opportunities where I can grow, contribute, and keep learning. Reach out any of these ways.</p>
+    <div class="contact-grid">
+      <a class="contact-btn" href="mailto:govardhangovgov@gmail.com">Email me</a>
+      <a class="contact-btn" href="tel:+919391879413">Call / WhatsApp</a>
+      <a class="contact-btn" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Built by L. Govardhan Goud — Andhra Pradesh, India
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
